@@ -8,9 +8,23 @@ add_compile_options(
   -Wpedantic
 )
 
+add_library(stack
+  src/stack.cpp
+  src/node.cpp
+)
+target_include_directories(stack PRIVATE
+  include
+)
+set(PROJECT_LIBS stack)
 
 add_executable(cpp-stack-exercise
-  src/main.cpp
+  src/cpp-stack-exercise.cpp
+)
+target_include_directories(cpp-stack-exercise PRIVATE
+  include
+)
+target_link_libraries(cpp-stack-exercise PRIVATE
+  stack
 )
 
 # Enable tests
