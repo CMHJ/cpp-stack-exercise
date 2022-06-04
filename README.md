@@ -2,7 +2,7 @@
 
 A simple cpp exercise where a list/stack was implemented.
 
-This was primarily to learn so more modern concepts such as:
+This was primarily to learn some more modern concepts such as:
 
 - Slightly more advanced CMake configurations
 - Testing in C/Cpp with CMake
