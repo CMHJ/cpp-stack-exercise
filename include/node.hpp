@@ -5,13 +5,19 @@
 
 #include <memory>
 
-class Node {
+template <typename T> class Node {
 public:
-  Node(const int &, std::unique_ptr<Node>);
+  Node(T, std::unique_ptr<Node>);
   ~Node();
 
-  int m_data;
+  T m_data;
   std::unique_ptr<Node> m_next;
 };
+
+template <typename T>
+Node<T>::Node(T data, std::unique_ptr<Node> next)
+    : m_data(data), m_next(std::move(next)) {}
+
+template <typename T> Node<T>::~Node() {}
 
 #endif // _H_NODE__

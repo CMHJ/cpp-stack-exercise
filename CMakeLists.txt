@@ -8,23 +8,11 @@ add_compile_options(
   -Wpedantic
 )
 
-add_library(stack
-  src/stack.cpp
-  src/node.cpp
-)
-target_include_directories(stack PRIVATE
-  include
-)
-set(PROJECT_LIBS stack)
-
 add_executable(cpp-stack-exercise
   src/cpp-stack-exercise.cpp
 )
 target_include_directories(cpp-stack-exercise PRIVATE
   include
-)
-target_link_libraries(cpp-stack-exercise PRIVATE
-  stack
 )
 
 # Enable tests
@@ -37,7 +25,3 @@ add_custom_target(test_memcheck
         --force-new-ctest-process --test-action memcheck
     COMMAND cat "${CMAKE_BINARY_DIR}/Testing/Temporary/MemoryChecker.*.log"
     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
-
-# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-# include(CPack)

@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <memory>
 #include <stdio.h>
 
 #include "stack.hpp"
@@ -11,7 +12,7 @@ void assert(const bool expression, const char *message) {
 }
 
 int main(void) {
-  auto stack = std::make_unique<Stack>();
+  auto stack = std::make_unique<Stack<int>>();
   stack->push(1);
   stack->push(2);
   stack->push(3);
