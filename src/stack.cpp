@@ -9,29 +9,25 @@ Stack::~Stack() {
   }
 }
 
-void Stack::push(int data) {
-  // If head is null set next ptr to null
+void Stack::push(const int &data) {
   if (m_head == nullptr) {
-    m_head = new Node(data, nullptr);
-    m_size++;
-    return;
+    // If head is null set next ptr to null
+    m_head = std::make_unique<Node>(data, nullptr);
+  } else {
+    // Else set new head next ptr to previous head
+    m_head = std::make_unique<Node>(data, std::move(m_head));
   }
 
-  // Else set next to previous head
-  Node *old_head = m_head;
-  m_head = new Node(data, old_head);
+  // Increment list size
   m_size++;
 }
 
 int Stack::pop() {
-  // Get old head and store data for return
-  Node *old_head = m_head;
-  int data = old_head->m_data;
-
-  // Update head to next node and delete old node
-  m_head = old_head->m_next;
-  delete old_head;
+  // Remove old head and update Stack head
+  std::unique_ptr<Node> old_head = std::move(m_head);
+  m_head = std::move(old_head->m_next);
   m_size--;
 
-  return data;
+  // Return popped value
+  return old_head->m_data;
 }

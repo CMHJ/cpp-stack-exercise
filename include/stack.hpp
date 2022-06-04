@@ -3,7 +3,8 @@
 #ifndef _H_STACK__
 #define _H_STACK__
 
-// #include <memory> // TODO reimplement with unique_ptr
+#include <memory>
+
 #include "node.hpp"
 
 class Stack {
@@ -12,11 +13,11 @@ public:
   ~Stack();
 
   int pop();
-  void push(int);
+  void push(const int &);
   int len() { return m_size; }
 
 private:
-  Node* m_head;
+  std::unique_ptr<Node> m_head;
   int m_size;
 };
 
